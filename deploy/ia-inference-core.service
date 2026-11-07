@@ -1,0 +1,14 @@
+[Unit]
+Description=IA Inference Core - Coral TPU API
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/ia-inference-core
+ExecStart=/opt/coral-venv/bin/python -m uvicorn api:app --host 127.0.0.1 --port 8001
+Restart=on-failure
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
